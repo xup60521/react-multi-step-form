@@ -1,4 +1,4 @@
-import SideBarDesktop from ".././images/bg-sidebar-desktop.svg";
+import SideBarDesktop from "/images/bg-sidebar-desktop.svg";
 
 export default function Bar({ step }: { step?: number }) {
     function highlight(s: number) {
