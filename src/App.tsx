@@ -1,24 +1,62 @@
 import { useState } from "react";
-import SideBarDesktop from "./images/bg-sidebar-desktop.svg";
 import "./App.css";
+import Bar from "./components/Bar";
+import Step1 from "./components/Step1";
+import Step2 from "./components/Step2";
+import Step3 from "./components/Step3";
+import Step4 from "./components/Step4";
 
 function App() {
-    const [count, setCount] = useState(0);
+    const [step, setStep] = useState(1);
+    function handleFadeInOut(s: number) {
+        if (s < step) {
+            return "animate-fadeoutleft";
+        }
+        if (s === step) {
+            return "animate-fadeinright";
+        }
+        return "hidden";
+    }
 
     return (
         <div className="w-screen font-ubuntu h-screen bg-slate-200 flex justify-center items-center">
-            <div className="bg-white p-4 px-3 flex flex-col md:flex-row md:h-4/5 md:w-[65rem] max-w-full rounded-lg">
-                <div
-                    className="h-full aspect-[1/2]"
-                    style={{
-                        backgroundImage: `url(${SideBarDesktop})`,
-                        backgroundRepeat: "round",
-                    }}
-                >
-                    123
+            <div className="bg-white md:p-4 md:px-3 flex flex-col md:flex-row md:h-4/5 md:w-[65rem] max-w-full md:rounded-lg w-full h-full">
+                <Bar step={step} />
+                <div className="relative flex-grow h-full">
+                    <div
+                        className={`flex w-full h-full flex-col absolute flex-grow ${handleFadeInOut(
+                            1
+                        )}`}
+                    >
+                        <Step1 setStep={setStep} />
+                    </div>
+                    <div
+                        className={`flex flex-col h-full w-full absolute flex-grow ${handleFadeInOut(
+                            2
+                        )}`}
+                    >
+                        <Step2 setStep={setStep} />
+                    </div>
+                    <div
+                        className={`flex flex-col h-full w-full absolute flex-grow ${handleFadeInOut(
+                            3
+                        )}`}
+                    >
+                        <Step3 setStep={setStep} />
+                    </div>
+                    <div
+                        className={`flex flex-col h-full w-full absolute flex-grow ${handleFadeInOut(
+                            4
+                        )}`}
+                    >
+                        <Step4 setStep={setStep} />
+                    </div>
                 </div>
-                <div className="flex flex-col"></div>
             </div>
+            {/* {step}
+            <button onClick={() => setStep((prev) => prev + 1)}>
+                increment
+            </button> */}
         </div>
     );
 }
