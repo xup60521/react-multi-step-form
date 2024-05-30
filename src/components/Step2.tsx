@@ -1,17 +1,29 @@
-import { useState } from "react";
 import type { PlanType, MonthlyOrYearly } from "../type";
 import ArcadeIcon from "/images/icon-arcade.svg";
 import AdvancedIcon from "/images/icon-advanced.svg";
+import { useAtom } from "jotai";
+import { resultAtom } from "@/state";
 
 export default function Step2({
     setStep,
 }: {
     setStep: React.Dispatch<React.SetStateAction<number>>;
 }) {
-    const [selectedPlan, setSelectedPlan] = useState<PlanType>("arcade");
-    const [monthOrYear, setMonthOrYear] = useState<MonthlyOrYearly>("monthly");
+    const [result, setResult] = useAtom(resultAtom);
+    function setSelectedPlan(e: PlanType) {
+        setResult((prev) => {
+            prev.plan_type = e;
+            return { ...prev };
+        });
+    }
+    function setMonthOrYear(e: MonthlyOrYearly) {
+        setResult((prev) => {
+            prev.time_plan = e;
+            return { ...prev };
+        });
+    }
     function getSelectStyle(e: PlanType) {
-        if (selectedPlan === e) {
+        if (result.plan_type === e) {
             return "border-purple-600 bg-neutral-50";
         }
         return "border-neutral-300";
@@ -36,7 +48,18 @@ export default function Step2({
                         <img src={ArcadeIcon} className="size-8" />
                         <div className="flex flex-col pt-10">
                             <h4 className="font-bold text-blue-900">Arcade</h4>
-                            <span className="text-sm text-neutral-400">{`$9/mo`}</span>
+                            {result.time_plan === "monthly" ? (
+                                <>
+                                    <span className="text-sm text-neutral-400">{`$9/mo`}</span>
+                                </>
+                            ) : (
+                                <>
+                                    <span className="text-sm text-neutral-400">{`$90/yr`}</span>
+                                    <p className="text-xs font-bold py-2 text-blue-800">
+                                        2 months free
+                                    </p>
+                                </>
+                            )}
                         </div>
                     </div>
                     <div
@@ -47,8 +70,19 @@ export default function Step2({
                     >
                         <img src={AdvancedIcon} className="size-8" />
                         <div className="flex flex-col pt-10">
-                            <h4 className="font-bold text-blue-900">Arcade</h4>
-                            <span className="text-sm text-neutral-400">{`$9/mo`}</span>
+                            <h4 className="font-bold text-blue-900">Advanced</h4>
+                            {result.time_plan === "monthly" ? (
+                                <>
+                                    <span className="text-sm text-neutral-400">{`$12/mo`}</span>
+                                </>
+                            ) : (
+                                <>
+                                    <span className="text-sm text-neutral-400">{`$120/yr`}</span>
+                                    <p className="text-xs font-bold py-2 text-blue-800">
+                                        2 months free
+                                    </p>
+                                </>
+                            )}
                         </div>
                     </div>
                     <div
@@ -59,15 +93,26 @@ export default function Step2({
                     >
                         <img src={ArcadeIcon} className="size-8" />
                         <div className="flex flex-col pt-10">
-                            <h4 className="font-bold text-blue-900">Arcade</h4>
-                            <span className="text-sm text-neutral-400">{`$9/mo`}</span>
+                            <h4 className="font-bold text-blue-900">Pro</h4>
+                            {result.time_plan === "monthly" ? (
+                                <>
+                                    <span className="text-sm text-neutral-400">{`$15/mo`}</span>
+                                </>
+                            ) : (
+                                <>
+                                    <span className="text-sm text-neutral-400">{`$150/yr`}</span>
+                                    <p className="text-xs font-bold py-2 text-blue-800">
+                                        2 months free
+                                    </p>
+                                </>
+                            )}
                         </div>
                     </div>
                 </div>
                 <div className="flex relative justify-center items-center w-full bg-slate-50 gap-6 py-3">
                     <span
                         className={`text-sm transition font-bold ${
-                            monthOrYear === "monthly"
+                            result.time_plan === "monthly"
                                 ? "text-sky-800"
                                 : "text-neutral-400"
                         }`}
@@ -76,8 +121,10 @@ export default function Step2({
                     </span>
                     <button
                         onMouseDown={() =>
-                            setMonthOrYear((prev) =>
-                                prev === "monthly" ? "yearly" : "monthly"
+                            setMonthOrYear(
+                                result.time_plan === "monthly"
+                                    ? "yearly"
+                                    : "monthly"
                             )
                         }
                         className="bg-blue-950 text-transparent w-9 h-5 text-sm rounded-full"
@@ -86,19 +133,21 @@ export default function Step2({
                     </button>
                     <div
                         onMouseDown={() =>
-                            setMonthOrYear((prev) =>
-                                prev === "monthly" ? "yearly" : "monthly"
+                            setMonthOrYear(
+                                result.time_plan === "monthly"
+                                    ? "yearly"
+                                    : "monthly"
                             )
                         }
                         className={`size-3 absolute bg-white cursor-pointer transition-all rounded-full ${
-                            monthOrYear === "monthly"
+                            result.time_plan === "monthly"
                                 ? ""
                                 : "translate-x-[0.9rem]"
                         }`}
                     ></div>
                     <span
                         className={`text-sm transition font-bold ${
-                            monthOrYear === "yearly"
+                            result.time_plan === "yearly"
                                 ? "text-sky-800"
                                 : "text-neutral-400"
                         }`}
