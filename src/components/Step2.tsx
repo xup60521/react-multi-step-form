@@ -31,22 +31,22 @@ export default function Step2({
 
     return (
         <div className="w-full h-full flex flex-col md:px-24">
-            <div className="flex flex-col w-full flex-grow">
-                <h2 className="text-3xl font-bold text-slate-700 pt-12 pb-2">
+            <div className="flex flex-col w-full h-fit md:flex-grow bg-white px-8 py-8 rounded-lg md:translate-y-0 -translate-y-[5rem]">
+                <h2 className="text-3xl font-bold text-slate-700 md:pt-12 pb-2">
                     Select your plan
                 </h2>
                 <p className="text-sm text-neutral-400">
                     You have the option of monthly or yearly billing.
                 </p>
-                <div className="grid grid-cols-3 gap-4 py-12">
+                <div className="md:grid md:grid-cols-3 gap-4 md:py-12 py-4 flex flex-col">
                     <div
                         onMouseDown={() => setSelectedPlan("arcade")}
-                        className={`flex transition cursor-pointer flex-col border-[1px] rounded-lg p-4 ${getSelectStyle(
+                        className={`flex transition md:gap-0 gap-4 md:items-start items-center cursor-pointer md:flex-col border-[1px] rounded-lg p-4 ${getSelectStyle(
                             "arcade"
                         )}`}
                     >
-                        <img src={ArcadeIcon} className="size-8" />
-                        <div className="flex flex-col pt-10">
+                        <img src={ArcadeIcon} className="md:size-8 size-10" />
+                        <div className="flex flex-col md:pt-10">
                             <h4 className="font-bold text-blue-900">Arcade</h4>
                             {result.time_plan === "monthly" ? (
                                 <>
@@ -64,12 +64,12 @@ export default function Step2({
                     </div>
                     <div
                         onMouseDown={() => setSelectedPlan("advanced")}
-                        className={`flex transition cursor-pointer flex-col border-[1px] rounded-lg p-4 ${getSelectStyle(
+                        className={`flex transition md:gap-0 gap-4 md:items-start items-center cursor-pointer md:flex-col border-[1px] rounded-lg p-4 ${getSelectStyle(
                             "advanced"
                         )}`}
                     >
-                        <img src={AdvancedIcon} className="size-8" />
-                        <div className="flex flex-col pt-10">
+                        <img src={AdvancedIcon} className="md:size-8 size-10" />
+                        <div className="flex flex-col md:pt-10">
                             <h4 className="font-bold text-blue-900">Advanced</h4>
                             {result.time_plan === "monthly" ? (
                                 <>
@@ -87,12 +87,12 @@ export default function Step2({
                     </div>
                     <div
                         onMouseDown={() => setSelectedPlan("pro")}
-                        className={`flex transition cursor-pointer flex-col border-[1px] rounded-lg p-4 ${getSelectStyle(
+                        className={`flex transition md:gap-0 gap-4 md:items-start items-center cursor-pointer md:flex-col border-[1px] rounded-lg p-4 ${getSelectStyle(
                             "pro"
                         )}`}
                     >
-                        <img src={ArcadeIcon} className="size-8" />
-                        <div className="flex flex-col pt-10">
+                        <img src={ArcadeIcon} className="md:size-8 size-10" />
+                        <div className="flex flex-col md:pt-10">
                             <h4 className="font-bold text-blue-900">Pro</h4>
                             {result.time_plan === "monthly" ? (
                                 <>
@@ -156,7 +156,7 @@ export default function Step2({
                     </span>
                 </div>
             </div>
-            <div className="flex justify-between py-4 w-full">
+            <div className="md:flex hidden justify-between py-4 w-full px-8">
                 <button
                     onMouseDown={() => setStep((prev) => prev - 1)}
                     className="text-neutral-400"

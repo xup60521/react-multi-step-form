@@ -57,8 +57,8 @@ export default function Step1({
     }
     return (
         <div className="w-full h-full flex flex-col md:px-24">
-            <div className="flex flex-col w-full flex-grow">
-                <h2 className="text-3xl font-bold text-slate-700 pt-12 pb-2">
+            <div className="flex flex-col w-full h-fit md:flex-grow bg-white px-8 py-8 rounded-lg md:translate-y-0 -translate-y-[5rem]">
+                <h2 className="text-3xl font-bold text-slate-700 md:pt-12 pb-2">
                     Personal info
                 </h2>
                 <p className="text-sm text-neutral-400">
@@ -101,7 +101,7 @@ export default function Step1({
                     </div>
                 </div>
             </div>
-            <div className="flex justify-end py-4 w-full">
+            <div className="md:flex justify-end py-4 w-full hidden px-8">
                 <button
                     onMouseDown={handleNextStep}
                     className="bg-blue-950 text-white px-6 py-3 rounded-lg"

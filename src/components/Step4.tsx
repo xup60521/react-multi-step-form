@@ -19,8 +19,8 @@ export default function Step4({
     }
     return (
         <div className="w-full h-full flex flex-col md:px-24">
-            <div className="flex flex-col w-full flex-grow">
-                <h2 className="text-3xl font-bold text-slate-700 pt-12 pb-2">
+            <div className="flex flex-col w-full h-fit md:flex-grow bg-white px-8 py-8 rounded-lg md:translate-y-0 -translate-y-[5rem]">
+                <h2 className="text-3xl font-bold text-slate-700 md:pt-12 pb-2">
                     Finishing up
                 </h2>
                 <p className="text-sm text-neutral-400">
@@ -30,7 +30,7 @@ export default function Step4({
                     <div className="flex justify-between items-center w-full  border-b-[1px] border-neutral-300 pb-4">
                         <div className="flex flex-col gap-1">
                             <p className="text-sm font-bold text-blue-800 font">{`${capitalizeFirstLetter(result.plan_type)} (${capitalizeFirstLetter(result.time_plan)})`}</p>
-                            <span className="text-xs text-neutral-400 underline underline-offset-2">Change</span>
+                            <button onMouseDown={()=>{setStep(2)}} className="text-xs text-left w-fit text-neutral-400 underline underline-offset-2">Change</button>
                         </div>
                         <span className="font-bold text-blue-800">{`$${price[result.time_plan].plan[result.plan_type]}/mo`}</span>
                     </div>
@@ -45,15 +45,16 @@ export default function Step4({
                 </div>
                 <div className="flex justify-between p-4">
                         <span className="text-xs text-neutral-400">Total (per {result.time_plan === "monthly" ? "month" : "year"})</span>
-                        <span className="text-indigo-700">{`+$${totalprice}/${result.time_plan === "monthly" ? "mo" : "yr"}`}</span>
+                        <span className="text-indigo-700">{`$${totalprice}/${result.time_plan === "monthly" ? "mo" : "yr"}`}</span>
                 </div>
             </div>
-            <div className="flex justify-between py-4 w-full">
+            <div className="md:flex hidden justify-between py-4 w-full px-8">
                 <button onMouseDown={() => setStep((prev) => prev - 1)} className="text-neutral-400">
                     Go Back
                 </button>
                 <button
                     className="bg-indigo-700 text-white px-6 py-3 rounded-lg"
+                    onMouseDown={()=>setStep(prev => prev + 1)}
                 >
                     Confirm
                 </button>
