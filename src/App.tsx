@@ -22,7 +22,7 @@ function App() {
 
     return (
         <div className="w-screen font-ubuntu h-screen bg-slate-200 flex justify-center items-center">
-            <div className="bg-white md:p-4 md:px-3 flex flex-col md:flex-row md:h-4/5 md:w-[65rem] max-w-full md:rounded-lg w-full h-full">
+            <div className="bg-white md:p-4 md:px-3 flex flex-col md:flex-row md:h-[40rem] md:w-[65rem] max-w-full md:rounded-lg w-full h-full">
                 <Bar step={step} />
                 <div className="relative flex-grow h-full bg-slate-50 md:bg-white">
                     <div
