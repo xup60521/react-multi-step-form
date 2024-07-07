@@ -39,6 +39,13 @@ Links:
 
 - Live website: <https://xup60521.github.io/react-multi-step-form/>
 
+```bash
+# install dependencies
+pnpm install
+# start dev server
+pnpm run dev
+```
+
 ## My process
 
 ### Built with
